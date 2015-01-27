@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.shashwat.spring.model.Student;
+
 /**
  * Handles requests for the application home page.
  */
@@ -34,6 +36,15 @@ public class StudentController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+	
+	public Student getDummyStudent() {
+		logger.info("Start getDummyStudent method");
+		Student student = new Student();
+		student.setId(100);
+		student.setName("Dummy");
+		student.setJoiningDate(new Date());
+		return student;
 	}
 	
 }
