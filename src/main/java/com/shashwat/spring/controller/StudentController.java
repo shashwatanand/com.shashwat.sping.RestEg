@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shashwat.spring.model.Student;
 
@@ -38,7 +39,8 @@ public class StudentController {
 		return "home";
 	}
 	
-	public Student getDummyStudent() {
+	@RequestMapping(value = URIConstantsStudentRest.DUMMY_STUDENT, method = RequestMethod.GET)
+	public @ResponseBody Student getDummyStudent() {
 		logger.info("Start getDummyStudent method");
 		Student student = new Student();
 		student.setId(100);
