@@ -2,7 +2,9 @@ package com.shashwat.spring.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,8 @@ import com.shashwat.spring.model.Student;
 public class StudentController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
+	
+	private Map<Integer, Student> data = new HashMap<Integer, Student>();
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -42,11 +46,12 @@ public class StudentController {
 	@RequestMapping(value = URIConstantsStudentRest.DUMMY_STUDENT, method = RequestMethod.GET)
 	public @ResponseBody Student getDummyStudent() {
 		logger.info("Start getDummyStudent method");
+		int id = 100;
 		Student student = new Student();
-		student.setId(100);
+		student.setId(id);
 		student.setName("Dummy");
 		student.setJoiningDate(new Date());
+		this.data.put(id, student);
 		return student;
 	}
-	
 }
