@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,5 +50,11 @@ public class StudentController {
 		student.setJoiningDate(new Date());
 		this.data.put(id, student);
 		return student;
+	}
+	
+	@RequestMapping(value = URIConstantsStudentRest.GET_STUDENT, method = RequestMethod.GET)
+	public @ResponseBody Student getStudent(@PathVariable("id") int id) {
+		logger.info("Start getStudent method where id is " + id);
+		return this.data.get(id);
 	}
 }
