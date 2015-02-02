@@ -57,4 +57,12 @@ public class StudentController {
 		logger.info("Start getStudent method where id is " + id);
 		return this.data.get(id);
 	}
+	
+	@RequestMapping(value = URIConstantsStudentRest.DELETE_STUDENT, method = RequestMethod.PUT)
+	public @ResponseBody Student deleteStudent(@PathVariable("id") int id) {
+		logger.info("Start deleteStudent where id is " + id);
+        Student student = this.data.get(id);
+        this.data.remove(student);
+        return student;
+	}
 }
