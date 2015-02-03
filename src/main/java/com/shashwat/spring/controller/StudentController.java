@@ -1,8 +1,11 @@
 package com.shashwat.spring.controller;
 
 import java.text.DateFormat;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -64,5 +67,17 @@ public class StudentController {
         Student student = this.data.get(id);
         this.data.remove(student);
         return student;
+	}
+	
+	@RequestMapping(value = URIConstantsStudentRest.GET_ALL_STUDENTS, method = RequestMethod.GET)
+	public @ResponseBody Collection<Student> getAllStudents() {
+		logger.info("Start getAllStudents");
+		return this.data.values();
+	}
+	
+	@RequestMapping(value = URIConstantsStudentRest.GET_ALL_STUDENTS_LIST, method = RequestMethod.GET)
+	public @ResponseBody List<Student> getAllStudentsList() {
+		logger.info("Start getAllStudentsList");
+		return Arrays.asList(this.data.values().toArray(new Student[this.data.size()]));
 	}
 }
