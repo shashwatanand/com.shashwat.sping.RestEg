@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.client.RestTemplate;
 
 import com.shashwat.spring.controller.URIConstantsStudentRest;
+import com.shashwat.spring.model.Student;
 
 public class TestStudentRest {
 	
@@ -20,5 +21,21 @@ public class TestStudentRest {
             System.out.println("ID = "+ map.get("id") + " ,Name = " + map.get("name") + " ,CreatedDate = "+ map.get("createdDate"));;
         }
 	}
+
+	private static void testCreateStudent() {
+		RestTemplate restTemplate = new RestTemplate();
+		Student student = new Student();
+		student.setId(1);
+		student.setName("Shashwat");
+		Student response = restTemplate.postForObject(SERVER_ADDR + URIConstantsStudentRest.CREATE_STUDENT,
+				student, Student.class);
+		
+		printData(response);
+	}
+	
+	public static void printData(Student student){
+        System.out.println("ID = " + student.getId() + " ,Name = " + student.getName() 
+        		+ " ,JoiningDate = "+ student.getJoiningDate());
+    }
 
 }
