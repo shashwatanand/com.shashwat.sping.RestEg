@@ -37,5 +37,11 @@ public class TestStudentRest {
         System.out.println("ID = " + student.getId() + " ,Name = " + student.getName() 
         		+ " ,JoiningDate = "+ student.getJoiningDate());
     }
+	
+	private static void testGetStudent() {
+		RestTemplate restTemplate = new RestTemplate();
+		Student student = restTemplate.getForObject(SERVER_ADDR + "/rest/student/1", Student.class);
+		printData(student);
+	}
 
 }
